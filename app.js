@@ -16,7 +16,7 @@ function onReady() {
     let checkbox = document.createElement('input');
 
     // delete an input item
-    let delEntry = document.getElementsByClassName('delete')
+    let delEntry = document.getElementsByClassName('delete');
 
     // set the input's type to checkbox
     checkbox.type = "checkbox";
