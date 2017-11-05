@@ -6,7 +6,7 @@ function onReady() {
   function createNewToDo() {
     //to access the text input
     const newToDoText = document.getElementById('newToDoText');
-    if (!newToDoText) { return } // prevent empty to-do items
+    if (!newToDoText.value) { return } // prevent empty to-do items
 
     //add the new to-do to the array
     toDos.push({
@@ -21,7 +21,7 @@ function onReady() {
       renderTheUI(toDos);
     }
 
-    // Not real clear if this should be at this location
+    // render the user interface
     function renderTheUI(toDos) {
       // access the <ul> in the HTML
       const todoList = document.getElementById('toDoList');
@@ -44,7 +44,7 @@ function onReady() {
       toDos.forEach(function(toDo) {
         const newLi = document.createElement('li');
         const checkbox = document.createElement('input');
-        var delEntry = document.createElement('BUTTON');
+        var delEntry = document.createElement('button');
         var btnText = document.createTextNode("Delete");
 
         console.log(btnText + " information");
@@ -54,12 +54,17 @@ function onReady() {
         // add the toDo's title text to newLi
          newLi.textContent = toDo.title;
 
+         delEntry.addEventListener('click', event => {
+           todoList.removeChild(newLi);
+           // need to pop from toDos array
+         });
+
         // update the DOM
-        todoList.appendChild(newLi);
+
         newLi.appendChild(checkbox);
         delEntry.appendChild(btnText);
-        document.body.appendChild(delEntry);
-
+        newLi.appendChild(delEntry);
+        todoList.appendChild(newLi);
       });
 
       }
